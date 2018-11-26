@@ -72,7 +72,7 @@ if(isset($_POST['button'])){
 ?>
 
 
-	<form name="form" method="post" action="" enctype="multipart/form-data">
+	<form name="form" method="post" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td><h1> N° Cartão ou Código de acesso:</h1></td>
