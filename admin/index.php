@@ -15,27 +15,44 @@
 		
 	<script>
 		function enviar(){
-			console.log("OP ",op.value);
-			console.log("Nome ",nome.value);
-			console.log("Estoque ",estoque.value);
-			console.log("Preço ",preco.value);
-
-			op = document.getElementById("op").value;
-			nome = document.getElementById("nome").value;
-			estoque = document.getElementById("estoque").value;
-			preco = document.getElementById("preco").value;
 			
-			$.get("http://localhost/projetoFinal/admin/catalog.php?op="+op+
-																  "&nome="+nome+
-																  "&estoque="+estoque+
-																  "&preco="+preco,
-				function(data){
-					console.log(data);
-					console.log("chegou aqui!!");
-					
-					// var valor = JSON.parse(data);
-					// resul.innerHTML = valor[0].qtd;
-			});
+			if(op.value == 'create'){
+				console.log("OP ",op.value);
+				console.log("Nome ",nome.value);
+				console.log("Estoque ",estoque.value);
+				console.log("Preço ",preco.value);
+
+				op = document.getElementById("op").value;
+				nome = document.getElementById("nome").value;
+				estoque = document.getElementById("estoque").value;
+				preco = document.getElementById("preco").value;
+				
+				$.get("http://localhost/projetoFinal/admin/catalog.php?op="+op+
+																	"&nome="+nome+
+																	"&estoque="+estoque+
+																	"&preco="+preco,
+					function(data){
+						console.log(data);
+						console.log("chegou aqui!!");
+						
+						// var valor = JSON.parse(data);
+						// resul.innerHTML = valor[0].qtd;
+				});
+			} else if(op.value == 'findAll') {
+				console.log("OP ",op.value);
+
+				op = document.getElementById("op").value;
+				
+				$.get("http://localhost/projetoFinal/admin/catalog.php?op="+op,
+					function(data){
+						console.log("Data: ", data);
+						console.log("chegou aqui!!");
+						
+						// var valor = JSON.parse(data);
+						// resul.innerHTML = valor[0].qtd;
+				});
+			}
+
 		}
 	</script>
 		
@@ -45,31 +62,32 @@
 	<div class="container">
 
 			<h2>Bem Vindo!!</h2>
-			<p>Escolha </p>
+			<br>
 			<label for="op">Selecione o metodo que deseja:</label>
 			<select class="form-control" id="op">
 				<option value="create">Cadastrar</option>
 				<option value="update">Atualizar</option>
 				<option value="delete">Deletar</option>
-				<option value="getAll">Ver</option>
+				<option value="findAll">Ver</option>
 			</select>
 			<br>
-
-				<p style="text-aling: center;">Cadastro de produto: <p>	
+			<input type = "submit" onclick="enviar()" value="Buscar">
+			<br>
+			<h4 style="text-aling: center;">Caso escolha cadastro de produto complete os campos abaixo:</h4>	
 				
-				<label>Nome desejado:</label>
-				<br>
-				<input type="text" id="nome">
-				<br><br>
-				<label>Quantidade em estoque:</label>
-				<br>
-				<input type="text" id="estoque">
-				<br><br>
-				<label>Preço:</label>
-				<br>
-				<input type="text" id="preco">
-				<br>
-				<br>
+			<label>Nome desejado:</label>
+			<br>
+			<input type="text" id="nome">
+			<br><br>
+			<label>Quantidade em estoque:</label>
+			<br>
+			<input type="text" id="estoque">
+			<br><br>
+			<label>Preço:</label>
+			<br>
+			<input type="text" id="preco">
+			<br>
+			<br>
 			<input type = "submit" onclick="enviar()">
 
 			<br><br>

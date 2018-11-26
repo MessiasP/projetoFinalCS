@@ -15,9 +15,9 @@ switch ($op) {
 	echo ("create");
 	create($mysqli, $_GET["nome"], $_GET["estoque"], $_GET["preco"]);
 	break;
-	case "list":
+	case "findAll":
 		echo ("list");
-        listar($mysqli);
+        findAll($mysqli);
         break;
 	case "filterCode":
 		echo ("filterCode");
@@ -33,10 +33,22 @@ switch ($op) {
 	}
 	
 	function create($mysqli, $nome, $estoque, $preco) {
-		$query = "INSERT INTO produto (nome, estoque, preco) values ('".$nome."', '".$estoque."', '".$preco."')";
+		$query = "INSERT INTO produto (nome, estoque, preco) VALUES ('".$nome."', '".$estoque."', '".$preco."')";
 		$result = $mysqli -> query($query);
 		echo ("Service, chegou aqui!!");
 		echo json_encode($result);
+	}
+
+	function findAll($mysqli) {
+		$query = "SELECT nome, estoque, preco FROM produto";
+		$result = $mysqli->query($query);
+		
+		$dbdata = array();
+	
+		while( $row = $result->fetch_assoc()) {
+			$dbdata[]=$row;
+		}
+		echo json_encode($dbdata);
 	}
 
 // function reajuste($mysqli, $nome){
@@ -54,18 +66,6 @@ switch ($op) {
 	
 	// $result = $mysqli->query($query2);
 	
-// }
-
-// function listar($mysqli) {
-// 	$query = "SELECT produto_id, nome, estoque, preco from produto";
-// 	$result = $mysqli->query($query);
-	
-// 	$dbdata = array();
-
-// 	while( $row = $result->fetch_assoc()) {
-// 		$dbdata[]=$row;
-// 	}
-// 	echo json_encode($dbdata);
 // }
 
 // function getByCode($mysqli, $code) {
