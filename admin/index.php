@@ -15,12 +15,8 @@
 		
 	<script>
 		function enviar(){
-			
-			if(op.value == 'create'){
-				console.log("OP ",op.value);
-				console.log("Nome ",nome.value);
-				console.log("Estoque ",estoque.value);
-				console.log("Preço ",preco.value);
+
+			if(op.value == 'create') {
 
 				op = document.getElementById("op").value;
 				nome = document.getElementById("nome").value;
@@ -32,24 +28,52 @@
 																	"&estoque="+estoque+
 																	"&preco="+preco,
 					function(data){
-						console.log(data);
-						console.log("chegou aqui!!");
-						
-						// var valor = JSON.parse(data);
-						// resul.innerHTML = valor[0].qtd;
+						// if(status.value == 'sucess') {
+						alert("\n"+data+ "\nStatus: "+status);
+						this.products = data;
+						// }
+						// alert("Erro, Tente novamente!");
 				});
-			} else if(op.value == 'findAll') {
-				console.log("OP ",op.value);
+			}
+			
+			if(op.value == 'findAll') {
 
+				var products = [];
 				op = document.getElementById("op").value;
 				
 				$.get("http://localhost/projetoFinal/admin/catalog.php?op="+op,
 					function(data){
-						console.log("Data: ", data);
-						console.log("chegou aqui!!");
-						
-						// var valor = JSON.parse(data);
-						// resul.innerHTML = valor[0].qtd;
+						if(status == 'sucess') {
+						alert("\n"+data+ "\nStatus: "+status);
+						this.products = data;
+						}
+						alert("Erro, Tente novamente!");
+				});
+			}
+			
+			if(op.value == 'update') {
+
+				op = document.getElementById("op").value;
+				id = document.getElementById("id").value;
+				nome = document.getElementById("nome").value;
+				estoque = document.getElementById("estoque").value;
+				preco = document.getElementById("preco").value;
+				
+				$.get("http://localhost/projetoFinal/admin/catalog.php?op="+op+"&id="+id+"&nome="+nome+
+																	  "&estoque="+estoque+"&preco="+preco,
+					function(data){
+						alert("\n"+data+ "\nStatus: "+status);
+				});
+			}
+
+			if(op.value == 'delete') {
+
+				op = document.getElementById("op").value;
+				id = document.getElementById("id").value;
+				
+				$.get("http://localhost/projetoFinal/admin/catalog.php?op="+op+"&id="+id,
+					function(data){
+						alert("\n"+data+ "\nStatus: "+status);
 				});
 			}
 
@@ -71,10 +95,15 @@
 				<option value="findAll">Ver</option>
 			</select>
 			<br>
-			<input type = "submit" onclick="enviar()" value="Buscar">
+			<!-- <input type = "submit" onclick="enviar()" value="Buscar"> -->
+			<br><br>
+			<h4>Atualizar ou deletar produto:</h4>
+			<label>Codigo desejado:</label>
 			<br>
-			<h4 style="text-aling: center;">Caso escolha cadastro de produto complete os campos abaixo:</h4>	
-				
+			<input type="text" id="id">
+			<br><br>	
+			<h4 style="text-aling: center;">Caso escolha cadastro ou atualização de produto complete os campos abaixo:</h4>	
+
 			<label>Nome desejado:</label>
 			<br>
 			<input type="text" id="nome">
@@ -91,6 +120,8 @@
 			<input type = "submit" onclick="enviar()">
 
 			<br><br>
+
+			<!-- <label for="let d of products">{{d.nome}}</label> -->
 			
 		<!-- <button onClick="<script language='javascript'>window.location='admin';</script>">sdasda</button> -->
 			

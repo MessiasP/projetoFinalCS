@@ -16,18 +16,18 @@ switch ($op) {
 	create($mysqli, $_GET["nome"], $_GET["estoque"], $_GET["preco"]);
 	break;
 	case "findAll":
-		echo ("list");
+		echo ("findAll");
         findAll($mysqli);
         break;
-	case "filterCode":
-		echo ("filterCode");
-        getByCode($mysqli, $_GET["code"]);
+	case "update":
+		echo ("update");
+        update($mysqli, $_GET["id"], $_GET["nome"], $_GET["estoque"], $_GET["preco"]);
         break;
-	case "reajuste":
-	echo ("reajuste");
-	reajuste($mysqli, $_GET["x"],$_GET["y"],$_GET["z"]);
+	case "delete":
+	echo ("delete");
+	delete($mysqli, $_GET["id"]);
 		break;
-		default:
+	default:
 		echo "Operacao invalida";
 		break;
 	}
@@ -35,8 +35,7 @@ switch ($op) {
 	function create($mysqli, $nome, $estoque, $preco) {
 		$query = "INSERT INTO produto (nome, estoque, preco) VALUES ('".$nome."', '".$estoque."', '".$preco."')";
 		$result = $mysqli -> query($query);
-		echo ("Service, chegou aqui!!");
-		echo json_encode($result);
+		echo ("Produto creado com sucesso!");
 	}
 
 	function findAll($mysqli) {
@@ -49,35 +48,19 @@ switch ($op) {
 			$dbdata[]=$row;
 		}
 		echo json_encode($dbdata);
+		echo ("Produtos pesquisados com sucesso!");
 	}
 
-// function reajuste($mysqli, $nome){
+	function update($mysqli, $id, $nome, $estoque, $preco) {
+		$query = "UPDATE produto SET nome='".$nome."', estoque='".$estoque."', preco='".$preco."' WHERE produto_id='".$id."'";
+		$result = $mysqli->query($query);
+		echo ("Produto atualizado com sucesso!");
+	}
 
-	// $query = " insert into produto (produto_id, nome, estoque, preco) values nome>=".$nome." and estoque<=".$estoque "and preco<=".$preco;
-	// 	$result = $mysqli->query($query);
-	
-	// 	$dbdata = array();
-		
-	// 	while( $row = $result->fetch_assoc()) {
-	// 		$dbdata[]=$row;
-	// 	}
-	// 	echo json_encode($dbdata);
-	// $query2 = "update produto set preco = preco*1.".$z." where preco>=".$x." and preco<=".$y;
-	
-	// $result = $mysqli->query($query2);
-	
-// }
-
-// function getByCode($mysqli, $code) {
-// 	$query = "SELECT produto_id, nome, estoque, preco from produto where nome='".$code."'";
-// 	$result = $mysqli->query($query);
-
-// 	$dbdata = array();
-	
-// 	while( $row = $result->fetch_assoc()) {
-// 		$dbdata[]=$row;
-// 	}
-// 	echo json_encode($dbdata);
-// }
+	function delete($mysqli, $id) {
+		$query = "DELETE FROM produto WHERE produto_id='".$id."'";
+		$result = $mysqli->query($query);
+		echo ("Produto deletado com sucesso!");
+	}
 
 ?>
