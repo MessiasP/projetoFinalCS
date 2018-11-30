@@ -30,7 +30,7 @@
 			}
 			
 			if(op.value == 'findAll') {
-				
+
 				op = document.getElementById("op").value;
 				
 				$.get("http://localhost/projetoFinal/admin/catalog.php?op="+op,function(data){			
@@ -73,52 +73,52 @@
 		
 </head>
 <body style="background-color: black;">
-		<div class="container my-5" style="width: 70rem; heigth: 30rem; background-color: white; padding: 5vh; margin: 3% auto 3% auto;" >
+	<div class="container my-5" style="width: 70rem; heigth: 30rem; background-color: white; padding: 5vh; margin: 3% auto 3% auto;" >
 
-				<h2>Bem Vindo!!</h2>
-				<br>
-				<label for="op">Selecione o metodo que deseja:</label>
-				<select class="form-control" id="op">
-					<option value="create">Cadastrar</option>
-					<option value="update">Atualizar</option>
-					<option value="delete">Deletar</option>
-					<option value="findAll">Ver</option>
-				</select>
-				<br><br>
+		<h2>Bem Vindo!!</h2>
+		<br>
+		<label for="op">Selecione o metodo que deseja:</label>
+		<select class="form-control" id="op">
+			<option value="create">Cadastrar</option>
+			<option value="update">Atualizar</option>
+			<option value="delete">Deletar</option>
+			<option value="findAll">Ver</option>
+		</select>
+		<p>Pesquisa é realizada sem preenchimento de dado!</p>
+		<br><br>
 
-				<h4>Atualizar ou deletar produto:</h4>
-				<br>
-				<div class="form-group">
-					<input type="text" id="id" class="form-control" required>
-					<label class="form-control-placeholder">Codigo desejado:</label>
-				</div>
-				<br>		
-				<h4 style="text-aling: center;">Caso escolha cadastro ou atualização de produto complete os campos abaixo:</h4>	
-
-				<br>
-				<div class="form-group">
-					<input type="text" id="nome" class="form-control" required>
-					<label class="form-control-placeholder">Nome desejado:</label>
-				</div>
-				<br>
-
-				<div class="form-group">
-					<input type="text" id="estoque" class="form-control" required>
-					<label class="form-control-placeholder">Quantidade em estoque:</label>
-				</div>
-				<br>
-
-				<div class="form-group">
-					<input type="text" id="preco" class="form-control" required>
-					<label class="form-control-placeholder">Preço:</label>
-				</div>
-				<br>
-
-				<button type="button" class="btn btn-primary btn-lg btn-block" onclick="enviar()">ENVIAR</button>
-				<br><br>
-				<ul id="repo-list"></ul>
+		<h4>Atualizar ou deletar produto:</h4>
+		<br>
+		<div class="form-group">
+			<input type="text" id="id" class="form-control" required>
+			<label class="form-control-placeholder">Codigo desejado:</label>
 		</div>
-		
+		<br>		
+		<h4 style="text-aling: center;">Atualização de produto complete os campos abaixo junto, caso deseje cadastrar novos produtos preencha somente os campos abaixo:</h4>	
+
+		<br>
+		<div class="form-group">
+			<input type="text" id="nome" class="form-control" required>
+			<label class="form-control-placeholder">Nome desejado:</label>
+		</div>
+		<br>
+
+		<div class="form-group">
+			<input type="text" id="estoque" class="form-control" required>
+			<label class="form-control-placeholder">Quantidade em estoque:</label>
+		</div>
+		<br>
+
+		<div class="form-group">
+			<input type="text" id="preco" class="form-control" required>
+			<label class="form-control-placeholder">Preço:</label>
+		</div>
+		<br>
+
+		<button type="button" class="btn btn-primary btn-lg btn-block" onclick="enviar()">ENVIAR</button>
+		<br><br>
+		<ul id="repo-list"></ul>
+	</div>
 </body>
 <style>
 	.form-group {

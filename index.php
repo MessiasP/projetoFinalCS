@@ -17,7 +17,7 @@
 <!-- Logo -->
 
 
-<div id="caixa_login">
+<div id="caixa_login" style="margin: 10% auto auto auto;">
 <!-- se esse botao foi pressionado eu quero que as minhas caixas de textos sejam verificadas -->
 <!-- caso receba vazio o if vai fala que nao pode receber valor vazio -->
 <?php
@@ -70,7 +70,7 @@ if(isset($_POST['button'])){
 	
 }
 ?>
-
+	<h1 style="text-align: center; font-family: Times New Roman, Times, sans-serif; font-weight: bold; font-size: 20pt;">CONTROLE DE PRODUTOS</h1>
 
 	<form name="form" method="post" enctype="multipart/form-data">
 		<table>
@@ -87,7 +87,7 @@ if(isset($_POST['button'])){
 				<td><input type="password" name="password" /></>
 			</tr>
 			<tr>
-				<td><input  class="input" type="submit" name="button" value="Entrar"/></td>
+				<td><h1 style="text-align: center;"><input  class="input" type="submit" name="button" value="Entrar"/></h1></td>
 			</tr>
 		</table>
 	</form>
